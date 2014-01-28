@@ -1,7 +1,7 @@
 module MyExpenses
   class WebsiteController < MyExpensesBase
     get '/' do
-      erb :home
+      haml :home
     end
   end
 end
