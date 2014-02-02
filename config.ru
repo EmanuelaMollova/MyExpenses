@@ -9,5 +9,11 @@ module MyExpenses
   end
 end
 
-require './controllers/website_controller.rb'
-map('/') { run MyExpenses::WebsiteController }
+Dir.glob('./{controllers}/*.rb').each { |file| require file }
+
+PATHS = {
+  '/'     => MyExpenses::WebsiteController,
+  '/user' => MyExpenses::AuthenticationController
+}
+
+PATHS.each { |path, controller|  map(path) { run controller } }
