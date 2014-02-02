@@ -9,7 +9,7 @@ module MyExpenses
   end
 end
 
-Dir.glob('./{controllers}/*.rb').each { |file| require file }
+Dir.glob('./{helpers,controllers}/*.rb').each { |file| require file }
 
 PATHS = {
   '/'     => MyExpenses::WebsiteController,
