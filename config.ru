@@ -1,6 +1,9 @@
-require 'sinatra/base'
+require 'rubygems'
+require 'bundler'
 
 module MyExpenses
+  Bundler.require
+
   class MyExpensesBase < Sinatra::Base
     set :views, File.expand_path('../views', __FILE__)
   end
