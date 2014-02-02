@@ -1,0 +1,21 @@
+.text-center
+  %h1 Welcome to MyExpenses!
+  %p.lead.spacer This is an application, which helps you to keep track of all your expenses.
+  %p.lead Create categories and and manage them and get full reports for everything spent.
+  %p.lead Just log in or register if you don't have an account to begin tracking your budget.
+
+  %form.spacer{ method: "post", role: "form" }
+    .form-group
+      %label{ for: "username" } Username:
+      .col-xs-3.centered
+        %input.form-control{ id: "username", type: "text", name: "username" }
+    .form-group
+      %label Password:
+      .col-xs-3.centered
+        %input.form-control{ type: "password", name: "password" }
+    %button.btn.btn-default{ type: "submit" } Login
+
+  %p.spacer
+    Still don't have an account?
+    %a{ href: "/user/register" } Register
+    now!

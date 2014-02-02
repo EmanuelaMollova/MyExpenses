@@ -1,0 +1,17 @@
+.text-center
+  %h1 Register
+
+  %form.spacer{ :method => "post", :role => "form" }
+    .form-group
+      %label{ :for => "username" } Username:
+      .col-xs-3.centered
+        %input.form-control{ :id => "username", :type => "text", :name => "username" }
+    .form-group
+      %label Password:
+      .col-xs-3.centered
+        %input.form-control{ :type => "password", :name => "password" }
+    .form-group
+      %label Repeat password:
+      .col-xs-3.centered
+        %input.form-control{ :type => "password", :name => "repeated_password" }
+    %button.btn.btn-default{ :type => "submit" } Submit
