@@ -9,7 +9,12 @@ module MyExpenses
   end
 end
 
-Dir.glob('./{helpers,controllers}/*.rb').each { |file| require file }
+Dir.glob('./{models,helpers,controllers}/*.rb').each { |file| require file }
+
+DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
+
+DataMapper.auto_upgrade!
+DataMapper.finalize
 
 PATHS = {
   '/'     => MyExpenses::WebsiteController,
