@@ -5,6 +5,7 @@ gem 'haml'
 gem 'sqlite3'
 gem 'data_mapper'
 gem 'dm-sqlite-adapter'
+gem 'attr_encrypted'
 
 group :development do
   gem 'thin'           , :require => false
