@@ -3,15 +3,11 @@ module MyExpenses
     helpers AuthenticationHelpers
 
     get '/login' do
-      haml set_navigation_bar, :layout => :layout do
-        haml :login
-      end
+      haml :login
     end
 
     get '/register' do
-      haml set_navigation_bar, :layout => :layout do
-        haml :register
-      end
+      haml :register
     end
   end
 end
