@@ -11,18 +11,21 @@ module MyExpenses
     end
 
     post '/register' do
-      @error = long_enough(params[:password])
-      @error = passwords_match(params[:password], params[:repeated_password])
+      @error =
+        short_password(params[:password]) or
+        passwords_dont_match(params[:password], params[:repeated_password])
       if !@error
         user = User.new(username: params[:username], password: params[:password])
         if !user.save
           @error = to_sentence(user.errors)
+          haml :register
         else
           @success = "Your registration is successful."
           haml :login
         end
+      else
+        haml :register
       end
-      haml :register
     end
   end
 end
