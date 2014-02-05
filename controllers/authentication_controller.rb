@@ -15,11 +15,10 @@ module MyExpenses
       if !@error
         user = User.new(username: params[:username], password: params[:password])
         if !user.save
-          @error = to_sentence(user.errors)
-          haml :register
+          set_message(to_sentence(user.errors), :register)
         else
-          @success = "Your registration is successful."
-          haml :login
+          set_message("Your registration was successful.", :login, :success)
+          # @success = "Your registration is successful." haml :login
         end
       else
         haml :register
@@ -32,8 +31,7 @@ module MyExpenses
         session[:username] = params[:username]
         redirect '/'
       else
-        @error = "Wrong username or password."
-        haml :login
+        set_error("Wrong username or password.", :login)
       end
     end
 
@@ -42,6 +40,6 @@ module MyExpenses
       redirect '/'
     end
 
-    helpers AuthenticationHelpers, DataBaseHelpers::UserHelpers
+    helpers AuthenticationHelpers, DataBaseHelpers::UserHelpers, WebsiteHelpers
   end
 end
