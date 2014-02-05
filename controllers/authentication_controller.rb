@@ -1,6 +1,7 @@
 module MyExpenses
   class AuthenticationController < MyExpensesBase
     helpers AuthenticationHelpers
+    helpers DataBaseHelpers::UserHelpers
 
     get '/register' do
       haml :register
@@ -25,6 +26,17 @@ module MyExpenses
         end
       else
         haml :register
+      end
+    end
+
+    post '/login' do
+      user = find_user_by_username_and_password(params[:username], params[:password])
+      if user.size == 1
+        session[:username] = params[:username]
+        redirect '/'
+      else
+        @error = "Wrong username or password."
+        haml :login
       end
     end
   end

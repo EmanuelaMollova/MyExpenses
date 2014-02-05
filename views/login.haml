@@ -7,6 +7,9 @@
   - if @success
     %p.lead.text-success.spacer= @success
 
+  - if @error
+    %p.lead.text-danger.spacer= @error
+
   %form.spacer{ method: "post", role: "form" }
     .form-group
       %label{ for: "username" } Username:
