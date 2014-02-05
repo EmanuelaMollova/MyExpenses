@@ -4,5 +4,9 @@ module MyExpenses
       type == :error ? @error = message : @success = message
       haml template
     end
+
+    def redirect_home
+      redirect '/'
+    end
   end
 end

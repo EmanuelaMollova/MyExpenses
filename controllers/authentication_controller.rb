@@ -18,7 +18,6 @@ module MyExpenses
           set_message(to_sentence(user.errors), :register)
         else
           set_message("Your registration was successful.", :login, :success)
-          # @success = "Your registration is successful." haml :login
         end
       else
         haml :register
@@ -29,7 +28,7 @@ module MyExpenses
       user = find_user_by_username_and_password(params[:username], params[:password])
       if user.size == 1
         session[:username] = params[:username]
-        redirect '/'
+        redirect_home
       else
         set_error("Wrong username or password.", :login)
       end
@@ -37,7 +36,7 @@ module MyExpenses
 
     get '/logout' do
       session.clear
-      redirect '/'
+      redirect_home
     end
 
     helpers AuthenticationHelpers, DataBaseHelpers::UserHelpers, WebsiteHelpers
