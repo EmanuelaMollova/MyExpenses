@@ -1,8 +1,5 @@
 module MyExpenses
   class AuthenticationController < MyExpensesBase
-    helpers AuthenticationHelpers
-    helpers DataBaseHelpers::UserHelpers
-
     get '/register' do
       haml :register
     end
@@ -44,5 +41,7 @@ module MyExpenses
       session.clear
       redirect '/'
     end
+
+    helpers AuthenticationHelpers, DataBaseHelpers::UserHelpers
   end
 end
