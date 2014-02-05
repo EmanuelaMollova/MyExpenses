@@ -7,6 +7,10 @@ module MyExpenses
   class MyExpensesBase < Sinatra::Base
     set :views, File.expand_path('../views', __FILE__)
     enable :sessions
+
+    not_found do
+      haml :not_found
+    end
   end
 end
 
