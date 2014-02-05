@@ -4,11 +4,8 @@
   %p.lead Create categories and and manage them and get full reports for everything spent.
   %p.lead Just log in or register if you don't have an account to begin tracking your budget.
 
-  - if @success
-    %p.lead.text-success.spacer= @success
-
-  - if @error
-    %p.lead.text-danger.spacer= @error
+  = show_success_message
+  = show_error_message
 
   %form.spacer{ method: "post", role: "form" }
     .form-group

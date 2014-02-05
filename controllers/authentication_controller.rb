@@ -30,7 +30,7 @@ module MyExpenses
         session[:username] = params[:username]
         redirect_home
       else
-        set_error("Wrong username or password.", :login)
+        set_message("Wrong username or password.", :login)
       end
     end
 
@@ -39,6 +39,8 @@ module MyExpenses
       redirect_home
     end
 
-    helpers AuthenticationHelpers, DataBaseHelpers::UserHelpers, WebsiteHelpers
+    helpers AuthenticationHelpers, WebsiteHelpers
+    helpers DataBaseHelpers::UserHelpers
+    helpers ViewHelpers
   end
 end

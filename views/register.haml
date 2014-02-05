@@ -1,8 +1,7 @@
 .text-center
   %h1 Register
 
-  - if @error
-    %p.lead.text-danger.spacer= @error
+  = show_error_message
 
   %form.spacer{ :method => "post", :role => "form" }
     .form-group
