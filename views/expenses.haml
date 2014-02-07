@@ -27,6 +27,7 @@
           - if @categories
             - @categories.each do |category|
               %option= category.name
+    %button.btn.btn-default{ type: "submit" } Add
 
   - if @expenses
     %table.table.centered.spacer
