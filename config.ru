@@ -24,7 +24,8 @@ DataMapper.finalize
 PATHS = {
   '/'           => MyExpenses::WebsiteController,
   '/user'       => MyExpenses::AuthenticationController,
-  '/categories' => MyExpenses::CategoryController
+  '/categories' => MyExpenses::CategoryController,
+  '/expenses'   => MyExpenses::ExpenseController
 }
 
 PATHS.each { |path, controller|  map(path) { run controller } }
