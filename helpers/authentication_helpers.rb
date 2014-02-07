@@ -11,9 +11,5 @@ module MyExpenses
     def passwords_dont_match(password, repeated_password)
       "The passwords don't match." if password != repeated_password
     end
-
-    def to_sentence(errors)
-      errors.full_messages.flatten.join(', ')
-    end
   end
 end

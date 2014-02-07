@@ -8,5 +8,9 @@ module MyExpenses
     def redirect_home
       redirect '/'
     end
+
+    def to_sentence(errors)
+      errors.full_messages.flatten.join(', ')
+    end
   end
 end
