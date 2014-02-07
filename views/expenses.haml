@@ -27,3 +27,9 @@
           - if @categories
             - @categories.each do |category|
               %option= category.name
+
+  - if @expenses
+    %table.table.centered.spacer
+      - @expenses.each do |expense|
+        %tr
+          %td= expense.product
