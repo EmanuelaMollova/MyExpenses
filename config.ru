@@ -22,8 +22,9 @@ DataMapper.auto_upgrade!
 DataMapper.finalize
 
 PATHS = {
-  '/'     => MyExpenses::WebsiteController,
-  '/user' => MyExpenses::AuthenticationController
+  '/'           => MyExpenses::WebsiteController,
+  '/user'       => MyExpenses::AuthenticationController,
+  '/categories' => MyExpenses::CategoryController
 }
 
 PATHS.each { |path, controller|  map(path) { run controller } }

@@ -6,6 +6,10 @@ module MyExpenses
           user.password == password
         end
       end
+
+      def find_user(username = session[:username])
+        User.last(username: username)
+      end
     end
   end
 end

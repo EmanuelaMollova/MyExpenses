@@ -1,0 +1,17 @@
+.text-center
+  %h1 Categories
+
+  = show_error_message
+
+  %form.spacer{ method: "post", role: "form" }
+    .form-group
+      %label{ for: "name" } Name:
+      .col-xs-2.centered
+        %input.form-control{ id: "name", type: "text", name: "name" }
+    %button.btn.btn-default{ type: "submit" } Add
+
+  - if @categories
+    %table.table.centered.spacer
+      - @categories.each do |category|
+        %tr
+          %td= category.name
