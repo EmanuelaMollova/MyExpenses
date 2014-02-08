@@ -1,3 +1,3 @@
-require './my_app.rb'
+require './my_app'
 
 PATHS.each { |path, controller|  map(path) { run controller } }
