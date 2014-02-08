@@ -12,8 +12,8 @@ module MyExpenses
         end
       end
 
-      def find_user(username = session[:username])
-        User.last(username: username)
+      def find_current_user
+        User.last(username: session[:username])
       end
     end
   end
