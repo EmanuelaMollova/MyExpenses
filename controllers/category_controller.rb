@@ -5,14 +5,13 @@ module MyExpenses
     end
 
     get '/' do
-      @categories = find_categories_for_user
+      @categories = find_categories_for_current_user
       haml :categories
     end
 
     post '/' do
-      category = Category.new(name: params[:name], user: find_user)
-      set_message(to_sentence(category.errors), :categories) if !category.save
-      @categories = find_categories_for_user
+      @error = create_category(params[:name])
+      @categories = find_categories_for_current_user
       haml :categories
     end
 

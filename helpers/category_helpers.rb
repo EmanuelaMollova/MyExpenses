@@ -1,8 +1,13 @@
 module MyExpenses
   module DataBaseHelpers
     module CategoryHelpers
-      def find_categories_for_user(user = session[:username])
-        Category.all(user: { username: user })
+      def create_category(name)
+        category = Category.new(name: name, user: find_current_user)
+        to_sentence(category.errors) if !category.save
+      end
+
+      def find_categories_for_current_user
+        Category.all(user: { username: session[:username] })
       end
 
       def find_category(name)
