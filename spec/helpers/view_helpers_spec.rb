@@ -15,5 +15,9 @@ module MyExpenses
       @success = "Success"
       show_success_message.should eq "<p class='lead text-success spacer'>Success</p>"
     end
+
+    it "should convert Date to string" do
+      date_to_string(Date.new(2008, 3, 15)).should eq "15/03/2008"
+    end
   end
 end

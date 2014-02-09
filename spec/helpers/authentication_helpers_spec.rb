@@ -13,5 +13,11 @@ module MyExpenses
       passwords_dont_match('abc', 'abc').should eq nil
       passwords_dont_match('123', 'abc').should eq "The passwords don't match."
     end
+
+    it "should check if passwords meet criteria" do
+      passwords_dont_meet_criteria('q1w2e3', 'q1w2e3').should eq nil
+      passwords_dont_meet_criteria('q1w2e3', 'q1w2e').should eq "The passwords don't match."
+      passwords_dont_meet_criteria('q1', 'q1').should eq "The password is too short."
+    end
   end
 end
