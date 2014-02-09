@@ -1,21 +1,23 @@
 .text-center
-  %h1 Request a Report
+  - if @no_categories
+    %p.lead Please first add some categories.
+  - else
+    %h1 Request a Report
+    = show_error_message
 
-  = show_error_message
-
-  %form.spacer{ method: "post", role: "form" }
-    .form-group
-      %label{ for: "product" } Select Categories:
-      - if @categories
-        %select.form-control{ multiple: "multiple", name: "categories[]" }
-          - @categories.each do |category|
-            %option.text-center{ value: "#{category.name}" }= category.name
-    .form-group
-      %label{ for: "start_date" } Start Date:
-      .col-xs-2.centered
-        %input.datepicker.form-control{ id: "start_date", type: "text", name: "start_date" }
-    .form-group
-      %label{ for: "end_date" } End Date:
-      .col-xs-2.centered
-        %input.datepicker.form-control{ id: "end_date", type: "text", name: "end_date" }
-    %button.btn.btn-default{ type: "submit" } Submit
+    %form.spacer{ method: "post", role: "form" }
+      .form-group
+        %label{ for: "product" } Select Categories:
+        - if @categories
+          %select.form-control{ multiple: "multiple", name: "categories[]" }
+            - @categories.each do |category|
+              %option.text-center{ value: "#{category.name}" }= category.name
+      .form-group
+        %label{ for: "start_date" } Start Date:
+        .col-xs-2.centered
+          %input.datepicker.form-control{ id: "start_date", type: "text", name: "start_date" }
+      .form-group
+        %label{ for: "end_date" } End Date:
+        .col-xs-2.centered
+          %input.datepicker.form-control{ id: "end_date", type: "text", name: "end_date" }
+      %button.btn.btn-default{ type: "submit" } Submit

@@ -107,6 +107,7 @@ DEPENDENCIES
   data_mapper
   dm-sqlite-adapter
   haml
+  rack-test
   rspec
   sinatra
   sinatra-contrib

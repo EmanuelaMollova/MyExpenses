@@ -14,7 +14,7 @@ module MyExpenses
     end
 
     def string_to_date(string)
-      Date.strptime(string, '%m/%d/%Y')
+      Date.strptime(string, '%d/%m/%Y')
     end
 
     def current_month_date_range

@@ -1,27 +1,30 @@
 .text-center
   %h1= "Report reply"
 
-  = pie_chart @report_chart_array
+  - if @error
+    =show_error_message
+  - else
+    = pie_chart @report_chart_array
 
-  %p.lead= "You have spent #{@total_sum} so far for:"
+    %p.lead= "You have spent #{@total_sum} so far for:"
 
-  - if @expenses
-    - @expenses.each do |expenses_group|
-      - if expenses_group.size.nonzero?
-        %p.lead.spacer= expenses_group.first.category.name
+    - if @expenses
+      - @expenses.each do |expenses_group|
+        - if expenses_group.size.nonzero?
+          %p.lead.spacer= expenses_group.first.category.name
 
-        .table-responsive
-          %table.table.table-condensed
-            %tr
-              %th.text-center Product
-              %th.text-center Description
-              %th.text-center Price
-            - expenses_group.each do |expense|
+          .table-responsive
+            %table.table.table-condensed
               %tr
-                %td= expense.product
-                %td= expense.description
-                %td= expense.price
+                %th.text-center Product
+                %th.text-center Description
+                %th.text-center Price
+              - expenses_group.each do |expense|
+                %tr
+                  %td= expense.product
+                  %td= expense.description
+                  %td= expense.price
 
-        %p
-          Sum:
-          = expenses_group.map { |expense| expense.price }.reduce(:+)
+          %p
+            Sum:
+            = expenses_group.map { |expense| expense.price }.reduce(:+)

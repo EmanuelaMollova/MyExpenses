@@ -1,29 +1,33 @@
 .text-center
-  %h1= "Expenses for #{Date.today.strftime("%B")} #{Date.today.year}"
 
-  = pie_chart @expenses_chart_array
+  - if @error
+    =show_error_message
+  - else
+    %h1= "Expenses for #{Date.today.strftime("%B")} #{Date.today.year}"
 
-  %p.lead= "You have spent #{@sum_for_month} so far for:"
+    = pie_chart @expenses_chart_array
 
-  - if @expenses
-    - @expenses.each do |expenses_group|
-      - if expenses_group.size.nonzero?
-        %p.lead.spacer= expenses_group.first.category.name
+    %p.lead= "You have spent #{@sum_for_month} so far for:"
 
-        .table-responsive
-          %table.table.table-condensed
-            %tr
-              %th.text-center Product
-              %th.text-center Description
-              %th.text-center Date
-              %th.text-center Price
-            - expenses_group.each do |expense|
+    - if @expenses
+      - @expenses.each do |expenses_group|
+        - if expenses_group.size.nonzero?
+          %p.lead.spacer= expenses_group.first.category.name
+
+          .table-responsive
+            %table.table.table-condensed
               %tr
-                %td= expense.product
-                %td= expense.description
-                %td= date_to_string(expense.date)
-                %td= expense.price
+                %th.text-center Product
+                %th.text-center Description
+                %th.text-center Date
+                %th.text-center Price
+              - expenses_group.each do |expense|
+                %tr
+                  %td= expense.product
+                  %td= expense.description
+                  %td= date_to_string(expense.date)
+                  %td= expense.price
 
-        %p
-          Sum:
-          = expenses_group.map { |expense| expense.price }.reduce(:+)
+          %p
+            Sum:
+            = expenses_group.map { |expense| expense.price }.reduce(:+)

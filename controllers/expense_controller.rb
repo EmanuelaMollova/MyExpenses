@@ -6,12 +6,20 @@ module MyExpenses
 
     get '/month' do
       categories = find_categories_for_current_user
-      @expenses  = find_expenses_between_dates_by_categories(
-        categories.map(&:name),
-        current_month_date_range
-      )
-      @sum_for_month        = find_sum_between_dates(current_month_date_range)
-      @expenses_chart_array = create_array_for_expenses_chart(categories, @expenses)
+      if categories.empty?
+        @error = "Please first add some categories."
+      else
+        @expenses  = find_expenses_between_dates_by_categories(
+          categories.map(&:name),
+          current_month_date_range
+        )
+        if @expenses.all?(&:empty?)
+          @error ||= "Please first add some expenses."
+        else
+          @sum_for_month        = find_sum_between_dates(current_month_date_range)
+          @expenses_chart_array = create_array_for_expenses_chart(categories, @expenses)
+        end
+      end
       haml :expenses_for_month
     end
 
