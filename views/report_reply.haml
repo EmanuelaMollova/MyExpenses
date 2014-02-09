@@ -1,9 +1,9 @@
 .text-center
-  %h1= "Expenses for #{Date.today.strftime("%B")} #{Date.today.year}"
+  %h1= "Report reply"
 
-  = pie_chart @expenses_chart_array
+  = pie_chart @report_chart_array
 
-  %p.lead= "You have spent #{@sum_for_month} so far for:"
+  %p.lead= "You have spent #{@total_sum} so far for:"
 
   - if @expenses
     - @expenses.each do |expenses_group|
@@ -15,13 +15,11 @@
             %tr
               %th.text-center Product
               %th.text-center Description
-              %th.text-center Date
               %th.text-center Price
             - expenses_group.each do |expense|
               %tr
                 %td= expense.product
                 %td= expense.description
-                %td= date_to_string(expense.date)
                 %td= expense.price
 
         %p

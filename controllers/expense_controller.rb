@@ -7,7 +7,7 @@ module MyExpenses
     get '/month' do
       categories = find_categories_for_current_user
       @expenses  = find_expenses_between_dates_by_categories(
-        categories,
+        categories.map(&:name),
         current_month_date_range
       )
       @sum_for_month        = find_sum_between_dates(current_month_date_range)
@@ -34,7 +34,7 @@ module MyExpenses
     end
 
     helpers AuthenticationHelpers, WebsiteHelpers
-    helpers DataBaseHelpers::CategoryHelpers, DataBaseHelpers::ExpenseHelpers ,DataBaseHelpers::UserHelpers
+    helpers DataBaseHelpers::CategoryHelpers, DataBaseHelpers::ExpenseHelpers, DataBaseHelpers::UserHelpers
     helpers ViewHelpers
   end
 end

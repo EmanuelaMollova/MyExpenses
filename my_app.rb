@@ -25,5 +25,6 @@ PATHS = {
   '/'           => MyExpenses::WebsiteController,
   '/user'       => MyExpenses::AuthenticationController,
   '/categories' => MyExpenses::CategoryController,
-  '/expenses'   => MyExpenses::ExpenseController
+  '/expenses'   => MyExpenses::ExpenseController,
+  '/report'     => MyExpenses::ReportController
 }

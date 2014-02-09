@@ -11,7 +11,8 @@
     %button.btn.btn-default{ type: "submit" } Add
 
   - if @categories
-    %table.table.centered.spacer
-      - @categories.each do |category|
-        %tr
-          %td= category.name
+    .spacer
+      %table.table.table-condensed
+        - @categories.each do |category|
+          %tr
+            %td= category.name

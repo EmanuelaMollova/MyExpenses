@@ -17,5 +17,9 @@ module MyExpenses
       end
       categories.zip(sums)
     end
+
+    def date_to_string(date)
+      date.strftime("%d/%m/%Y")
+    end
   end
 end

@@ -13,19 +13,10 @@ module MyExpenses
         to_sentence(expense.errors) if !expense.save
       end
 
-      # def find_expenses_by_categories(categories)
-      #   categories.map do |category|
-      #     Expense.all(
-      #       category: { name: category.name },
-      #       user: { username: session[:username] }
-      #     )
-      #   end
-      # end
-
-      def find_expenses_between_dates_by_categories(categories, date_range)
-        categories.map do |category|
+      def find_expenses_between_dates_by_categories(categories_names, date_range)
+        categories_names.map do |category_name|
           Expense.all(
-            category: { name: category.name },
+            category: { name: category_name },
             user:     { username: session[:username] },
             date:     date_range
           )
