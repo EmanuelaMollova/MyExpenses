@@ -2,7 +2,7 @@ module MyExpenses
   class WebsiteController < MyExpensesBase
     get '/' do
       redirect '/user/login' if not user_logged?
-      haml :home
+      redirect '/expenses/month'
     end
 
     helpers AuthenticationHelpers

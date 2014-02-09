@@ -8,10 +8,12 @@
     %link(href="/css/datepicker.css" rel="stylesheet" media="screen")
     %link(href="/css/datepicker3.css" rel="stylesheet" media="screen")
   %body
+    %script(src="//www.google.com/jsapi")
+    %script(src="/js/chartkick.js")
+    %script(src="/js/jquery-2.1.0.min.js")
     = user_logged? ? (haml :logged_navigation_bar) : (haml :not_logged_navigation_bar)
 
     = yield
 
-    %script(src="/js/jquery-2.1.0.min.js")
     %script(src="/js/bootstrap-datepicker.js")
     %script(src="/js/myexpenses.js")

@@ -4,29 +4,37 @@ module MyExpenses
       protected!
     end
 
-    get '/' do
-      @categories = find_categories_for_user
-      haml :expenses
+    get '/month' do
+      categories = find_categories_for_current_user
+      @expenses  = find_expenses_between_dates_by_categories(
+        categories,
+        current_month_date_range
+      )
+      @sum_for_month        = find_sum_between_dates(current_month_date_range)
+      @expenses_chart_array = create_array_for_expenses_chart(categories, @expenses)
+      haml :expenses_for_month
     end
 
-    post '/' do
-      date = DateTime._strptime(params[:date], '%m/%d/%Y')
-      expense = Expense.new(
-        product: params[:product],
-        description: params[:description],
-        price: params[:price],
-        date: DateTime.new(date[:year], date[:mon], date[:mday]),
-        user: find_user,
-        category: find_category(params[:category])
-      )
-      set_message(to_sentence(expense.errors), :expenses) if !expense.save
-      @categories = find_categories_for_user
-      @expenses = Expense.all
-      haml :expenses
+    get '/add' do
+      @categories = find_categories_for_current_user
+      haml :add_expense
+    end
+
+    post '/add' do
+      date        = string_to_date(params[:date])
+      category    = find_category(params[:category])
+      price       = params[:price].to_f.round 2
+      @error      = create_expense(params[:product], params[:description], price, date, category)
+      if @error
+        @categories = find_categories_for_current_user
+        haml :add_expense
+      else
+        redirect '/expenses/month'
+      end
     end
 
     helpers AuthenticationHelpers, WebsiteHelpers
-    helpers DataBaseHelpers::CategoryHelpers, DataBaseHelpers::UserHelpers
+    helpers DataBaseHelpers::CategoryHelpers, DataBaseHelpers::ExpenseHelpers ,DataBaseHelpers::UserHelpers
     helpers ViewHelpers
   end
 end

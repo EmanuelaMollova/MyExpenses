@@ -5,8 +5,8 @@ module MyExpenses
     property :id, Serial
     property :product, String
     property :description, Text
-    property :price, Decimal
-    property :date, DateTime
+    property :price, Float
+    property :date, Date
 
     belongs_to :user
     belongs_to :category
